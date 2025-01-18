@@ -25,15 +25,23 @@ class Game(ttk.Frame):
         self.create_boxes()
     
     def create_boxes(self):
-        self.top_left = ttk.Button(self, image=self.x_img)
-        self.top_middle = ttk.Button(self, image=self.empty)
-        self.top_right = ttk.Button(self, image=self.empty)
-        self.mid_left = ttk.Button(self, image=self.empty)
-        self.mid_middle = ttk.Button(self, image=self.empty)
-        self.mid_right = ttk.Button(self, image=self.empty)
-        self.bot_left = ttk.Button(self, image=self.empty)
-        self.bot_middle = ttk.Button(self, image=self.empty)
-        self.bot_right = ttk.Button(self, image=self.empty)
+
+        style = ttk.Style()
+        style.configure("GameButton.TButton", 
+                borderwidth=0,        # Removes border
+                padding=0,            # Removes extra padding
+                relief="flat",        # Makes it flat
+                highlightthickness=0) # Removes focus highlight
+
+        self.top_left = ttk.Button(self, image=self.empty, style="GameButton.TButton")
+        self.top_middle = ttk.Button(self, image=self.empty, style="GameButton.TButton")
+        self.top_right = ttk.Button(self, image=self.empty, style="GameButton.TButton")
+        self.mid_left = ttk.Button(self, image=self.empty, style="GameButton.TButton")
+        self.mid_middle = ttk.Button(self, image=self.empty, style="GameButton.TButton")
+        self.mid_right = ttk.Button(self, image=self.empty, style="GameButton.TButton")
+        self.bot_left = ttk.Button(self, image=self.empty, style="GameButton.TButton")
+        self.bot_middle = ttk.Button(self, image=self.empty, style="GameButton.TButton")
+        self.bot_right = ttk.Button(self, image=self.empty, style="GameButton.TButton")
 
         self.top_left.grid(row = 0, column = 0, rowspan = 1, columnspan = 1, sticky = 'nswe')
         self.top_middle.grid(row = 0, column = 1, rowspan = 1, columnspan = 1, sticky = 'nswe')
