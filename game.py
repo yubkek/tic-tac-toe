@@ -12,9 +12,12 @@ class Game(ttk.Frame):
         # state variables
 
         # matrix
-        current_matrix = [[0,0,0],
-                          [0,0,0],
-                          [0,0,0]]
+        self.current_matrix = [[0,0,0], 
+                               [0,0,0], 
+                               [0,0,0]]
+        
+        # buttons
+        self.buttons = []
         
         # button images
         self.empty = ImageTk.PhotoImage((Image.open('images/empty.png')))
@@ -23,6 +26,9 @@ class Game(ttk.Frame):
 
         # make boxes
         self.create_boxes()
+
+        # setup binds
+        self.setup_binds()
     
     def create_boxes(self):
 
@@ -52,9 +58,45 @@ class Game(ttk.Frame):
         self.bot_left.grid(row = 2, column = 0, rowspan = 1, columnspan = 1, sticky = 'nswe')
         self.bot_middle.grid(row = 2, column = 1, rowspan = 1, columnspan = 1, sticky = 'nswe')
         self.bot_right.grid(row = 2, column = 2, rowspan = 1, columnspan = 1, sticky = 'nswe')
+
+        self.buttons.append(self.top_left)
+        self.buttons.append(self.top_middle)
+        self.buttons.append(self.top_right)
+        self.buttons.append(self.mid_left)
+        self.buttons.append(self.mid_middle)
+        self.buttons.append(self.mid_right)
+        self.buttons.append(self.bot_left)
+        self.buttons.append(self.bot_middle)
+        self.buttons.append(self.bot_right)
         
     def setup_binds(self):
-        self.bind()
+        self.bind('<Button-3>', lambda event: self.clear_board)
+        self.top_left.bind('<Button-1>', lambda event: self.draw_x(self.top_left))
+        self.top_middle.bind('<Button-1>', lambda event: self.draw_x(self.top_middle))
+        self.top_right.bind('<Button-1>', lambda event: self.draw_x(self.top_right))
+        self.mid_left.bind('<Button-1>', lambda event: self.draw_x(self.mid_left))
+        self.mid_middle.bind('<Button-1>', lambda event: self.draw_x(self.mid_middle))
+        self.mid_right.bind('<Button-1>', lambda event: self.draw_x(self.mid_right))
+        self.bot_left.bind('<Button-1>', lambda event: self.draw_x(self.bot_left))
+        self.bot_middle.bind('<Button-1>', lambda event: self.draw_x(self.bot_middle))
+        self.bot_right.bind('<Button-1>', lambda event: self.draw_x(self.bot_right))
+
+        self.top_left.bind('<Button-3>', lambda event: self.draw_o(self.top_left))
+        self.top_middle.bind('<Button-3>', lambda event: self.draw_o(self.top_middle))
+        self.top_right.bind('<Button-3>', lambda event: self.draw_o(self.top_right))
+        self.mid_left.bind('<Button-3>', lambda event: self.draw_o(self.mid_left))
+        self.mid_middle.bind('<Button-3>', lambda event: self.draw_o(self.mid_middle))
+        self.mid_right.bind('<Button-3>', lambda event: self.draw_o(self.mid_right))
+        self.bot_left.bind('<Button-3>', lambda event: self.draw_o(self.bot_left))
+        self.bot_middle.bind('<Button-3>', lambda event: self.draw_o(self.bot_middle))
+        self.bot_right.bind('<Button-3>', lambda event: self.draw_o(self.bot_right))
+
+
+    def draw_x(self, button):
+        button.config(image=self.x_img)
+
+    def draw_o(self, button):
+        button.config(image=self.o_img)
 
     def draw_grid(self):
         pass
@@ -64,3 +106,10 @@ class Game(ttk.Frame):
 
     def check_win_o(self):
         pass
+
+    def clear_board(self):
+        print("test")
+        self.current_matrix = [[0,0,0], 
+                               [0,0,0], 
+                               [0,0,0]]
+        

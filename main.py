@@ -26,6 +26,12 @@ class Main(ttk.Window):
         # place 
         self.game.grid(row = 0, column = 0, rowspan = 2, columnspan = 2, sticky = 'nswe')
 
+        self.bind('<KeyPress-f>', self.check_focus)
+
+    def check_focus(self, event=None):
+        focused_widget = self.focus_get()
+        print(f"Focused Widget: {focused_widget}")
+
 def main():
     app = Main()
     app
