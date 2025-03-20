@@ -71,26 +71,31 @@ class Game(ttk.Frame):
         
     def setup_binds(self):
         self.bind('<Button-3>', lambda event: self.clear_board)
-        self.top_left.bind('<Button-1>', lambda event: self.draw_x(self.top_left))
-        self.top_middle.bind('<Button-1>', lambda event: self.draw_x(self.top_middle))
-        self.top_right.bind('<Button-1>', lambda event: self.draw_x(self.top_right))
-        self.mid_left.bind('<Button-1>', lambda event: self.draw_x(self.mid_left))
-        self.mid_middle.bind('<Button-1>', lambda event: self.draw_x(self.mid_middle))
-        self.mid_right.bind('<Button-1>', lambda event: self.draw_x(self.mid_right))
-        self.bot_left.bind('<Button-1>', lambda event: self.draw_x(self.bot_left))
-        self.bot_middle.bind('<Button-1>', lambda event: self.draw_x(self.bot_middle))
-        self.bot_right.bind('<Button-1>', lambda event: self.draw_x(self.bot_right))
+        self.top_left.bind('<Button-1>', lambda event: self.draw_x(self.top_left), self.draw_x_board(0,0))
+        self.top_middle.bind('<Button-1>', lambda event: self.draw_x(self.top_middle), self.draw_x_board(0,1))
+        self.top_right.bind('<Button-1>', lambda event: self.draw_x(self.top_right), self.draw_x_board(0,2))
+        self.mid_left.bind('<Button-1>', lambda event: self.draw_x(self.mid_left), self.draw_x_board(1,0))
+        self.mid_middle.bind('<Button-1>', lambda event: self.draw_x(self.mid_middle), self.draw_x_board(1,1))
+        self.mid_right.bind('<Button-1>', lambda event: self.draw_x(self.mid_right), self.draw_x_board(1,2))
+        self.bot_left.bind('<Button-1>', lambda event: self.draw_x(self.bot_left), self.draw_x_board(2,0))
+        self.bot_middle.bind('<Button-1>', lambda event: self.draw_x(self.bot_middle), self.draw_x_board(2,1))
+        self.bot_right.bind('<Button-1>', lambda event: self.draw_x(self.bot_right), self.draw_x_board(2,2))
 
-        self.top_left.bind('<Button-3>', lambda event: self.draw_o(self.top_left))
-        self.top_middle.bind('<Button-3>', lambda event: self.draw_o(self.top_middle))
-        self.top_right.bind('<Button-3>', lambda event: self.draw_o(self.top_right))
-        self.mid_left.bind('<Button-3>', lambda event: self.draw_o(self.mid_left))
-        self.mid_middle.bind('<Button-3>', lambda event: self.draw_o(self.mid_middle))
-        self.mid_right.bind('<Button-3>', lambda event: self.draw_o(self.mid_right))
-        self.bot_left.bind('<Button-3>', lambda event: self.draw_o(self.bot_left))
-        self.bot_middle.bind('<Button-3>', lambda event: self.draw_o(self.bot_middle))
-        self.bot_right.bind('<Button-3>', lambda event: self.draw_o(self.bot_right))
+        self.top_left.bind('<Button-3>', lambda event: self.draw_o(self.top_left), self.draw_y_board(0,0))
+        self.top_middle.bind('<Button-3>', lambda event: self.draw_o(self.top_middle), self.draw_y_board(0,1))
+        self.top_right.bind('<Button-3>', lambda event: self.draw_o(self.top_right), self.draw_y_board(0,2))
+        self.mid_left.bind('<Button-3>', lambda event: self.draw_o(self.mid_left), self.draw_y_board(1,0))
+        self.mid_middle.bind('<Button-3>', lambda event: self.draw_o(self.mid_middle), self.draw_y_board(1,1))
+        self.mid_right.bind('<Button-3>', lambda event: self.draw_o(self.mid_right), self.draw_y_board(1,2))
+        self.bot_left.bind('<Button-3>', lambda event: self.draw_o(self.bot_left), self.draw_y_board(2,0))
+        self.bot_middle.bind('<Button-3>', lambda event: self.draw_o(self.bot_middle), self.draw_y_board(2,1))
+        self.bot_right.bind('<Button-3>', lambda event: self.draw_o(self.bot_right), self.draw_y_board(2,2))
 
+    def draw_x_board(self, x, y):
+        self.current_matrix[x][y] = 1
+
+    def draw_y_board(self, x, y):
+        self.current_matrix[x][y] = 2
 
     def draw_x(self, button):
         button.config(image=self.x_img)
